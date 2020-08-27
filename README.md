@@ -1,2 +1,2 @@
 # coleastaire.github.io
-My GitHub Pages repo
+My GitHub Pages Repo containing personal notes and writing.
