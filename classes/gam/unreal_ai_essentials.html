@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../../style.css">
+<title>unreal_ai_essentials</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Unreal AI Essentials"><h1 id="Unreal AI Essentials" class="header"><a href="#Unreal AI Essentials">Unreal AI Essentials</a></h1></div>
+
+<p>
+on page 146/318
+</p>
+<div id="Unreal AI Essentials-Behavior Trees"><h3 id="Behavior Trees" class="header"><a href="#Unreal AI Essentials-Behavior Trees">Behavior Trees</a></h3></div>
+<div id="Unreal AI Essentials-Behavior Trees-Nodes"><h4 id="Nodes" class="header"><a href="#Unreal AI Essentials-Behavior Trees-Nodes">Nodes</a></h4></div>
+<ul>
+<li>
+Decorators
+
+<li>
+Composites (Control Flow Nodes)
+
+<ul>
+<li>
+Selector - Left to right, returns after all children finish
+
+<li>
+Sequence - Left to right, returns when a child fails
+
+<li>
+Simple Parralel - executes tasks and it's tree at the same time.
+
+</ul>
+<li>
+Services
+
+<ul>
+<li>
+Update function within a composite. 
+
+</ul>
+<li>
+Tasks (Leaf Nodes)
+
+<ul>
+<li>
+Event Recieve Execute
+
+<ul>
+<li>
+recieves the signal to execute the scripts
+
+</ul>
+<li>
+Finish Execute
+
+<ul>
+<li>
+send the signal back and returns a boolean on success
+
+</ul>
+</ul>
+</ul>
+
+<div id="Unreal AI Essentials-Behavior Trees-BlackBoard"><h4 id="BlackBoard" class="header"><a href="#Unreal AI Essentials-Behavior Trees-BlackBoard">BlackBoard</a></h4></div>
+<p>
+Stores variables used within the BT. Created outside.
+</p>
+
+<div id="Unreal AI Essentials-Behavior Trees-BlackBoard-Possible Blackboard Variables"><h5 id="Possible Blackboard Variables" class="header"><a href="#Unreal AI Essentials-Behavior Trees-BlackBoard-Possible Blackboard Variables">Possible Blackboard Variables</a></h5></div>
+<ul>
+<li>
+State
+
+<li>
+Target
+
+<li>
+Route
+
+</ul>
+
+<div id="Unreal AI Essentials-Unreal AI Tools"><h3 id="Unreal AI Tools" class="header"><a href="#Unreal AI Essentials-Unreal AI Tools">Unreal AI Tools</a></h3></div>
+<ul>
+<li>
+Bt
+
+<li>
+Nav Comp
+
+<li>
+BB Asset/Variable
+
+<li>
+Enumeration
+
+<li>
+Target Point
+
+<li>
+AI Controller and Character
+
+<li>
+Nav Volumes
+
+<ul>
+<li>
+Navmesh Bounds Volumes, defines area
+
+<li>
+Nav Modifier, effects nav attributes where they intersect with a bounds volume
+
+</ul>
+</ul>
+
+<div id="Unreal AI Essentials-AI Controllers"><h3 id="AI Controllers" class="header"><a href="#Unreal AI Essentials-AI Controllers">AI Controllers</a></h3></div>
+<p>
+Likely need to create a custom blueprint with AI controller class within a new blueprint.
+This will be used to posess a pawn, happens automatically when a pawn is not possessed by a player controller.
+</p>
+<div id="Unreal AI Essentials-AI Controllers-MoveToLocation Tips"><h4 id="MoveToLocation Tips" class="header"><a href="#Unreal AI Essentials-AI Controllers-MoveToLocation Tips">MoveToLocation Tips</a></h4></div>
+<ul>
+<li>
+AcceptanceRadius - distance check for when to perform an action. 
+
+<li>
+bStopOnOverlap - stop on overlap of a point, rather than reaching the point from their center.
+
+<li>
+bUsePathFinding - uses NavMesh Option to find target
+
+<li>
+bProjectDestinationToNavigation - projects thre location on thhe navigation data before using it
+
+<li>
+bCanStrafe - whether the AI can traverse diagonally on NavMesh or not
+
+<li>
+FilterClass - allows the use of AreaClass, another nav component.
+
+<li>
+there is also a 'Simple Move To Location' which does similar, except without the ability to modify as many variables
+
+<li>
+you can use the Target Subpoint Actor from Custom Classes as waypoints
+
+</ul>
+<div id="Unreal AI Essentials-AI Controllers-Wandering AI Tips"><h4 id="Wandering AI Tips" class="header"><a href="#Unreal AI Essentials-AI Controllers-Wandering AI Tips">Wandering AI Tips</a></h4></div>
+<ul>
+<li>
+Use a STATE enum, can be an int
+
+<li>
+Use SwitchOnInt statement
+
+</ul>
+<div id="Unreal AI Essentials-AI Controllers-Traces"><h4 id="Traces" class="header"><a href="#Unreal AI Essentials-AI Controllers-Traces">Traces</a></h4></div>
+<p>
+Made using LineTraceByChannel function, to simulate senses, can trace outward from the character using GetActor&lt;R,L,F,B&gt;Vector and multiplying by a distance.
+</p>
+
+<div id="Unreal AI Essentials-RandomStream"><h3 id="RandomStream" class="header"><a href="#Unreal AI Essentials-RandomStream">RandomStream</a></h3></div>
+<p>
+Created by using the Make RandomStream, with input Initial Seed, which should be the seed, stored, from the last session. You cannot do this with the standard Random Node. You can randomize the seed to simulate true randomness. 
+For seeds, set the max value to 65535. 
+</p>
+
+<div id="Unreal AI Essentials-Transitions"><h3 id="Transitions" class="header"><a href="#Unreal AI Essentials-Transitions">Transitions</a></h3></div>
+
+<div id="Unreal AI Essentials-Path Finding"><h3 id="Path Finding" class="header"><a href="#Unreal AI Essentials-Path Finding">Path Finding</a></h3></div>
+<ul>
+<li>
+Influence Mapping - info based on location in nav mesh
+
+<li>
+Null Paths - cut areas out of nav mesh
+
+<li>
+Allowed Path - can allow/block AI from an area of the nav mesh
+
+</ul>
+<p>
+Cell Size: This is the 2D size of the voxel, basically a 3D pixel, which represents a
+space to navigate. This is the floor area of the voxel. This directly correlates to the
+resolution of NavMesh. Smaller sizes here generate more voxels, resulting in better
+movement precision. Unfortunately, performance takes a hit during the generation of
+NavMesh due to this.
+Cell Height: This is the height of the voxel. This value correlates to Agent Max Step
+Height, and it is suggested to be kept at half its value. NavMesh will not be
+generated if the Cell Height value isn’t at least .1 less than that of Agent Max Step
+Height.
+Tile Size UU: When this is at lower values, it increases the NavMesh Generation
+performance. Try enabling Draw Poly Edges to see this in action.
+Agent settings (Radius, Height, Max Height, Max Slope, Max Step Height): are
+specific to your agents and should be specified appropriately.
+Min Region Area: This gets rid of what looks to be artifacts of pieces of NavMesh
+Generation, which are too insignificant to navigate.
+</p>
+
+</body>
+</html>

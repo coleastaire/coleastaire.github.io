@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../../style.css">
+<title>big-o</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<div id="Resources"><h2 id="Resources" class="header"><a href="#Resources">Resources</a></h2></div>
+<ul>
+<li>
+<img src="../../../vimwiki/assets/big-O" />
+
+<li>
+<a href="big-o-hw.html">Big-O Homework</a>
+
+</ul>
+
+<div id="Big O Notation"><h2 id="Big O Notation" class="header"><a href="#Big O Notation">Big O Notation</a></h2></div>
+<p>
+Notation to describe the speed of an algorithm. Allows us not to use real-time or assembly instruction time. Hides all of these approaches.
+</p>
+
+<p>
+Chooses the operationthat is most <em>representative</em> of the alforithm and just count that instruction mathematically.
+</p>
+
+<p>
+Big O is not absolute, it is relative.
+</p>
+
+<div id="Big O Notation-Scenarios"><h3 id="Scenarios" class="header"><a href="#Big O Notation-Scenarios">Scenarios</a></h3></div>
+<ul>
+<li>
+BEST CASE:
+
+<ul>
+<li>
+minumum count over all possible inputs of size n
+
+</ul>
+<li>
+WORST CASE:
+
+<ul>
+<li>
+maximim ""
+
+</ul>
+<li>
+AVERAGE CASE:
+
+<ul>
+<li>
+average ""
+
+</ul>
+</ul>
+
+<p>
+When loops are nested, inputs are multuplied, when they are sequential, they are added. 
+</p>
+
+<div id="Big O Notation-Examples"><h3 id="Examples" class="header"><a href="#Big O Notation-Examples">Examples</a></h3></div>
+<p>
+~~~c++
+void init( int * a, int n )
+{
+// assume a is a valid pointer to memory of size of at least n integers
+for ( int i=0; i&lt;n; ++i ) {
+a[i] = i+1;
+}
+}
+~~~
+</p>
+
+<p>
+Use the assignment as the representative, which iterates n times, giving us a O(n) complexity. 
+</p>
+
+<p>
+~~~c++
+void init( int ** a, int n ) // initializing ragged (triangular) array
+for (int i = 0; i &lt; n; ++i) { // n iterations
+for (int j = i; j &lt; n; ++j) { // n, n-1 ,..., 1 iterations
+a[i][j] = (i == j) ? 1:0;
+}
+}
+}
+~~~
+</p>
+
+<p>
+Using the assignment as rep. again, this has a nested loop. Think of it this way, for each iteration, it executes the assignment (n-i) times, all the way to 1. 
+Therefor it is an <em>arithmetic series</em> of 'n + (n-1) + ... + 3 + 2 + 1'
+<span id="Big O Notation-Examples-RECALL:"></span><strong id="RECALL:">RECALL:</strong> the formula for n terms of an arithmetic series is a<sub><small>1</small></sub> + ... + a<sub><small>n</small></sub> = (n/2)(a<sub><small>1</small></sub> + a<sub><small>n</small></sub>)
+Applied, our formula becomes (n/2)(n + 1) = (n<sup><small>2</small></sup>/2)+(n/2)
+</p>
+
+<p>
+<span id="Big O Notation-Examples-NOTE:"></span><strong id="NOTE:">NOTE:</strong> if we were given a simple find function which iterates through a list of size <em>n</em>, comparing with <em>val</em> each time, what is the complexity?
+</p>
+<ul>
+<li>
+best case: O(1) when the first value checked is found
+
+<li>
+worst case: O(n) when the value isn't found
+
+<li>
+average case: this is more complicated, to find the average, we must find the <em>weighted average</em>, because there may be more than one of each value in the list, but we are simply looking for the first occurrence:
+
+<ul>
+<li>
+we look at both extremes:
+
+<li>
+assume: if the value is not in the list, we will not explore the list, meaning that the run-time at a val occurrence of 0 is 0.
+
+<li>
+assume: if the value is not in the list but we did explore the list, we will have explored at least 2<sup><small>32</small></sup> - n elements of the list. That is, the number of possible integer values - the number of times we have already iterated
+
+<li>
+we then consider when n is large or small:
+
+<ul>
+<li>
+<span class="todo">TODO</span>: the answer becomes O(n), but how? with small n, we approach n/2, with big n, we approach n. How did we choose?
+
+</ul>
+</ul>
+</ul>
+
+<div id="Big O Notation-Examples-Useful functions"><h4 id="Useful functions" class="header"><a href="#Big O Notation-Examples-Useful functions">Useful functions</a></h4></div>
+
+<p>
+Most useful functions for big-O in order:
+• Class O(K) or O(1). Constant f(n) = K, run-time does not depend on the size of the input.
+Examples: index operator in C++ array.
+• Class O(log n). Logarithmic f(n) = log n. Examples: binary search.
+• Class O(√n). No special name. Examples: brute-force test for a number to be prime.
+• Class O(n). Linear f(n) = n. Examples: linear search.
+• Class O(n log n). No special name. Examples: merge sort, heap sort, average case of quicksort.
+• Class O(n<sup><small>2</small></sup>). Quadratic f(n) = n<sup><small>2</small></sup>. Examples: bubble sort, selection sort, insertion sort.
+• Class O(n<sup><small>3</small></sup>). Cubic f(n) = n<sup><small>3</small></sup>. Examples: Floyd-Warshall algorithm.
+• Class O(K<sup><small>n</small></sup>). Exponential f(n) = K<sup><small>n</small></sup>, where K is a constant. Examples: almost everything!
+– depth-first search, breadth-first search, A*, satisfiability problem.
+• Class O(n!). Factorial f(n) = n! = 1 × 2 × 3 × . . . × (n − 1) × n. Usually combined with
+exponential class.
+</p>
+
+<p>
+<img src="../../../vimwiki/assets/complexity-graph-low" />
+<img src="../../../vimwiki/assets/complexity-graph-high" />
+</p>
+
+<div id="https://www.youtube.com/watch?v=__vX2sjlpXU"><h2 id="https://www.youtube.com/watch?v=__vX2sjlpXU" class="header"><a href="#https://www.youtube.com/watch?v=__vX2sjlpXU"><a href="https://www.youtube.com/watch?v=__vX2sjlpXU">https://www.youtube.com/watch?v=__vX2sjlpXU</a></a></h2></div>
+
+<div id="Comparing Algorithms"><h2 id="Comparing Algorithms" class="header"><a href="#Comparing Algorithms">Comparing Algorithms</a></h2></div>
+
+<div id="Comparing Algorithms-Big O:"><h3 id="Big O:" class="header"><a href="#Comparing Algorithms-Big O:">Big O:</a></h3></div>
+<ul>
+<li>
+ignores constants
+
+<li>
+certain terms dominate others:
+
+<ul>
+<li>
+O(1) &lt; O(logn) &lt; O(sqrt(n)) &lt; O(n) &lt; O(nlogn) &lt; O(n<sup><small>2</small></sup>) &lt; O(2<sup><small>n</small></sup>) &lt; O(n!)
+
+</ul>
+<li>
+drop the lower order terms after performing arithmetic on their big O notation.
+
+<li>
+ignores the base of log's:
+
+<ul>
+<li>
+log,a,n = O(log,10,n)
+
+<li>
+<a href="https://www.youtube.com/watch?time_continue=20&amp;v=MY-VCrQCaVw&amp;feature=emb_logo">https://www.youtube.com/watch?time_continue=20&amp;v=MY-VCrQCaVw&amp;feature=emb_logo</a>
+
+</ul>
+</ul>
+
+<p>
+To compare two functions, simply take their representatives (which you believe might be the the fastest growing) and find their limit as n-&gt;inf. The limit will evaluate to infinity if the numerator is the dominant term, to zero if the denominator is the dominant term, and some constant if they’re the same order of magnitude.
+</p>
+
+<div id="Proving Big-O"><h2 id="Proving Big-O" class="header"><a href="#Proving Big-O">Proving Big-O</a></h2></div>
+<p>
+see: <a href="https://www.youtube.com/watch?v=DjfYhHSkWqo">https://www.youtube.com/watch?v=DjfYhHSkWqo</a>
+</p>
+
+<p>
+if f(n) &lt;= C * g(n) for all n&gt;=k, where C and K are positive.
+f(n)/g(n) &lt;= C for all n&gt;=K.
+</p>
+
+<p>
+Show that f(n) = n<sup><small>2</small></sup> + 2n + 1 is )(n<sup><small>2</small></sup>)
+</p>
+<ul>
+<li>
+f(n)/n<sup><small>2</small></sup> &lt;= C for all n&gt;=1 :
+
+<ul>
+<li>
+set it up
+
+</ul>
+<li>
+(n<sup><small>2</small></sup> + 2n<sup><small>2</small></sup> + n<sup><small>2</small></sup>)/n<sup><small>2</small></sup> &gt; f(n)/n<sup><small>2</small></sup> for all n &gt;=1 :
+
+<ul>
+<li>
+statement of fact for all positive n
+
+<li>
+How do we know:
+
+</ul>
+</ul>
+
+</body>
+</html>

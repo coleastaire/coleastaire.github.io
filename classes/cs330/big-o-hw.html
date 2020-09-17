@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="Stylesheet" type="text/css" href="../../style.css">
+<title>big-o-hw</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<ol>
+<li>
+:
+
+<ol>
+<li>
+true
+
+<li>
+true
+
+<li>
+false
+
+<li>
+true
+
+<li>
+true
+
+<li>
+true
+
+<li>
+false
+
+</ol>
+<li>
+:
+
+<ol>
+<li>
+O(n<sup><small>2</small></sup>)
+
+<li>
+O(n)
+
+<li>
+O(n)
+
+<li>
+O(log<sup><small>5</small></sup>n)
+
+<li>
+O(nlogn)
+
+<li>
+O(n<sup><small>2</small></sup>)
+
+<li>
+O(n<sup><small>2</small></sup>logn)
+
+<li>
+O(2<sup><small>n</small></sup>)
+
+<li>
+O(3<sup><small>n</small></sup>)
+
+</ol>
+<li>
+na
+
+<li>
+na
+
+<li>
+na
+
+<li>
+na
+
+<li>
+na
+
+<li>
+na
+
+<li>
+na
+
+<li>
+The outer loop evaluate at logn runtime, as each iteration is cut in half : n/2<sup><small>i</small></sup>
+    The inner loop iterations are dependent on the current value of the iterator in the outer loop, but still evaluates at a linear runtime, n. 
+    Therefore, the complexity is O(nlogn).
+    There are no variables modified within any iteration of the loop, therefor the worst case = best case = average case.
+
+</ol>
+<blockquote>
+See Example:
+***
+m=1;
+for ( i=0; i&lt;n; ++i ) {
+for ( j=m; j&lt;n; ++j ) {
+/* do work */
+}
+m = m*2;
+}
+***
+</blockquote>
+    
+<ol>
+<li>
+Assuming that we are strictly evaluatin on each loops complexity, the answer for this question would be the same as the last.
+    O(nlogn) because the innre loop is dependent on the outer, but runs at linear time.
+
+<li>
+This algorithm evaluates to O(n<sup><small>2</small></sup>). This is because:
+
+<ol>
+<li>
+the ternary operator acts as a simple for loop, iterating n times and taking care of the incrementation of the outer iterator. The modulo operator returns an int rather than a bool and will only be evaluated as FALSE once N has been reached. Upon which, the outer iterator will be incremented.
+
+<ol>
+<li>
+There are also no iterator dependencies on values within the  algorithm, therefor the time complexity will stay the same in worst = average = best case scenarios. 
+
+</ol>
+</ol>
+<li>
+:
+
+<ol>
+<li>
+given O(n<sup><small>3</small></sup>) and n = 1000. When n = 100 it took 1 hr, how many hours for n = 1000?
+	K * 100<sup><small>3</small></sup> = 1 -&gt; K * 1000<sup><small>3</small></sup> = (1/100<sup><small>3</small></sup>) * 1000<sup><small>3</small></sup> = t; t = 1000 hrs
+	Will O(n<sup><small>3</small></sup>), n=1000 evaluate in 20 days? No, 1000 !&gt; 480.
+
+<li>
+Given K * 100<sup><small>2</small></sup> = 10 min; 20 days = 1728000 sec.
+	K * 1000<sup><small>2</small></sup> = t -&gt; (10/100<sup><small>2</small></sup>) * 1000<sup><small>2</small></sup> = t = 1000 min = 0.694 days
+	Time to develop: 19 days, 9hr, 59 min, 2.4 sec
+
+</ol>
+<li>
+Given, we need 2<sup><small>60</small></sup> multiplications, we know that we perform ticks at 3GHz.
+    3GHz = 3 * 2<sup><small>30</small></sup> ticks/sec; 2<sup><small>60</small></sup>/(3*2<sup><small>30</small></sup>) = # seconds ~= 3.58 * 10<sup><small>8</small></sup> seconds
+    Duration of performance: 11 years, 4 months, 0 weeks, 6 days, 7 hours, 49 min, 57 sec
+
+</ol>
+
+</body>
+</html>
